@@ -1,0 +1,53 @@
+<h1 style="margin-bottom: 40px;">글작성</h1>
+<%= form_tag "/post/create",multipart: true, method: "post" do %>
+  <div class="form-group">
+    <label>제목</label>
+    <input name="title" type="text" class="form-control" placeholder="프로젝트의 제목을 적어주세요">
+  </div>
+  <div class="form-group">
+    <label>설명</label>
+    <textarea name="content" class="form-control" rows="5" placeholder="프로젝트를 설명해주세요"></textarea>
+  </div>
+  <div class="form-group">
+    <label>각오</label>
+    <textarea name="gako" class="form-control" rows="3" placeholder="각오를 적어주세요!"></textarea>
+  </div>
+  <div class="form-group">
+    <label>대문 사진</label>
+    <input name="img" type="file">
+  </div>
+  <label>모집기한</label>
+  <select name="dday" class="form-control">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+    <option>11</option>
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+  </select>
+  <label>모집 인원</label>
+  <select name="people" class="form-control">
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+    <option>11</option>
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+  </select>
+  <button style="margin-bottom: 30px; margin-top: 20px;" class="btn btn-default">작성하기</button>
+<% end %>

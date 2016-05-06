@@ -1,0 +1,44 @@
+<h2 class="white text-center" style="margin-top:80px; margin-bottom:65px;">Post Preview</h2>
+<p class="white02">
+<span class = "show_span">Title:</span>
+<%= @post.title %>
+</p>
+<p class="white02">
+<span class = "show_span">Content:</span>
+<%= simple_format(@post.content) %>
+</p>
+<p class="white02">
+<span class = "show_span">Name:</span>
+<%= User.find(@post.user_id).name %>
+</p>
+<p class="white02">
+<span class = "show_span">이미지:</span>
+<img class="img-responsive" src="<%= @post.img.url %>" alt="">
+</p>
+<p class="white02">
+<span class = "show_span">각오:</span>
+<%= simple_format(@post.gako) %>
+</p>
+<p class="white02">
+<span class = "show_span">모집기한:</span>
+<%= @post.created_at + (@post.dday*86400) %>
+</p>
+
+<% if @post.applicants.where(user_id: current_user.id)==[] %>
+  <%= form_tag "/post/add_applicant", method: "post" do %>
+    <input type="hidden" name="post_id" value="<%= @post.id %>" >
+    <button class="btn btn-lg btn-success" href="#" role="button" style="border-radius:10px">모임 등록</button>
+  <% end %>
+<% else %>
+  <%= form_tag "/post/del_applicant", method: "post" do %>
+    <input type="hidden" name="post_id" value="<%= @post.id %>" >
+    <button class="btn btn-lg btn-success" href="#" role="button" style="border-radius:10px">등록 해제</button>
+  <% end %>
+<% end %>
+
+<% if @post.applicants.count >0 %>
+  <h3 class="text-name" style="margin-top:40px;margin-bottom:40px">현재 참여자</h3>
+  <% @post.applicants.each do |a| %>
+    <img src="<%= User.find(a.user_id).image %>" style="border-radius:10px; margin-left:10px;margin-right:10px" width="40px" height="40px"/>
+  <% end %>
+<% end %>
